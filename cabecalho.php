@@ -1,0 +1,18 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Minha loja</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/loja.css">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=""> Milha Loja </a>
+			</div>
+		</div>	
+	</div>
+
+	<div class="container">
+		<div class="principal">

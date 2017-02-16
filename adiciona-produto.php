@@ -11,8 +11,6 @@
 	$nome = $_GET["nome"];
 	$preco = $_GET["preco"];
 
-	$conexao = mysqli_connect('localhost','root','','loja');
-
 
 	if (inserirProduto($conexao,$nome,$preco)) {
 ?>	

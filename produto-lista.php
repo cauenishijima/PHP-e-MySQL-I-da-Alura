@@ -20,11 +20,13 @@
 			<td><?=$produto['nome']?></td>
 			<td><?=$produto['preco']?></td>
 			<td><?=substr($produto['descricao'], 0, 40)?></td>
+			<td><?=$produto['categoria_nome']?></td>
 			<td>
-			<form method="post" action="remove-produto.php">
-				<input type="hidden" name="id" value="<?=$produto['id']?>">
-				<button class="btn btn-danger">remover</button>
-			</form>
+				<form method="post" action="remove-produto.php">
+					<input type="hidden" name="id" value="<?=$produto['id']?>">
+					<button class="btn btn-danger">remover</button>
+				</form>
+			</td>
 		</tr>
 	<?php
 		endforeach

@@ -1,29 +1,31 @@
 <?php 
-	include("cabecalho.php"); 
-	include("conecta.php");
-	include("banco-produto.php");
+	include('cabecalho.php'); 
+	include('conecta.php');
+	include('banco-produto.php');
 
-	$nome = $_GET["nome"];
-	$preco = $_GET["preco"];
+	$nome = $_POST['nome'];
+	$preco = $_POST['preco'];
+	$descricao = $_POST['descricao'];
 
 
-	if (inserirProduto($conexao,$nome,$preco)) {
+	if (inserirProduto($conexao,$nome,$preco,$descricao)) :
 ?>	
 
 	<p class=text-success>Produto <?php echo $nome; ?>, <?= $preco;?> adicionado com sucesso!</p>
 
 <?php
-	} else {
+	else :
 
-	$msg_error = mysqli_error($conexao);
+		$msg_error = mysqli_error($conexao);
 ?>
 
 	<p class=text-danger>Produto <?php echo $nome; ?> não foi adicionado : <?= $msg_error?> </p>
 
 <?php
-	}
+	endif;
 	// O fechamento da conexão é opcional, o próprio PHP fecha todas as conexões no final da página
 	mysqli_close($conexao);
 ?>
 
-<?php include("rodape.php"); ?>
+<?php 
+	include("rodape.php"); 

@@ -23,6 +23,10 @@
 				<td><textarea class="form-control" name="descricao"> </textarea></td>
 			</tr>
 			<tr>
+				<td></td>
+				<td><input type="checkbox" name="usado" value="True">Usado</td>
+			</tr>
+			<tr>
 				<td>Categoria</td>
 				<td>
 					<select name="categoria_id" class="form-control">

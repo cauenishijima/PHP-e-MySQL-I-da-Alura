@@ -15,11 +15,11 @@
 	<h1>Bem vindo</h1>
 
 	<?php
-		if (isset($_COOKIE["usuario_logado"])){
+		if (isset($_COOKIE["usuario_logado"])):
 	?>
 		<p class="text-success">Você esta logado como <?=$_COOKIE["usuario_logado"]?></p>
 	<?php
-		} else {
+		else:
 	?>
 
 	<h2>Login</h2>
@@ -38,6 +38,6 @@
 			</tr>
 		</table>
 	</form>
-	<?php } ?>
-	
+	<?php endif ?>
+
 <?php include("rodape.php");

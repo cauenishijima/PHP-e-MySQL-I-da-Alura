@@ -1,5 +1,6 @@
 <?php 
 	include("cabecalho.php"); 
+	include("logica-usuario.php");
 
 	if (isset($_GET['login']) && $_GET['login'] == true):
 ?>
@@ -12,14 +13,20 @@
 		<p class="alert-danger">Email ou senha inválidos!</p>
 <?php
 	endif;
+
+	if (isset($_GET['falhaDeSeguranca']) && $_GET['falhaDeSeguranca'] == true):
+?>
+		<p class="alert-danger">Usuário não esta logado!</p>
+<?php
+	endif;
 ?>
 
 	<h1>Bem vindo</h1>
 
 <?php
-	if (isset($_COOKIE["usuario_logado"])):
+	if (usuarioEstaLogado()):
 ?>
-		<p class="text-success">Você esta logado como <?=$_COOKIE["usuario_logado"]?></p>
+		<p class="text-success">Você esta logado como <?=usuarioLogado()?></p>
 <?php
 	else:
 ?>

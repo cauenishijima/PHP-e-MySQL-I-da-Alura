@@ -1,4 +1,8 @@
 <?php 
+	include("logica-usuario.php");
+
+	verificaUsuario();
+
 	include('cabecalho.php'); 
 	include('conecta.php');
 	include('banco-produto.php');

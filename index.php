@@ -1,30 +1,6 @@
 <?php 
-	include("cabecalho.php"); 
-	include("logica-usuario.php");
-
-	if (isset($_GET["logout"]) && $_GET["logout"] == true){
-?>
-		<p class="alert-success">Deslogado com sucesso</p>	
-<?php
-	}  
-
-	if (isset($_GET["login"]) && $_GET["login"] == true):
-?>
-		<p class="alert-success">Logado com sucesso</p>
-<?php
-	endif; 
-		
-	if (isset($_GET["login"]) && $_GET["login"] == false):
-?>	
-		<p class="alert-danger">Email ou senha inválidos!</p>
-<?php
-	endif;
-
-	if (isset($_GET["falhaDeSeguranca"]) && $_GET["falhaDeSeguranca"] == true):
-?>
-		<p class="alert-danger">Você não tem acesso a essa funcionalidade.</p>
-<?php
-	endif;
+	require_once("cabecalho.php"); 
+	require_once("logica-usuario.php");
 ?>
 
 	<h1>Bem vindo</h1>

@@ -1,10 +1,16 @@
-<?php
-	require_once("conecta.php");
+<?php 
+	class CategoriaDao
+	{
+		private $conexao;
 
-	function listaCategorias($conexao){
+		function __construct($conexao){
+			$this->conexao = $conexao;
+		}
+
+		function listaCategorias(){
 		$categorias = [];
 		$query = "SELECT * FROM categorias";
-		$resultado = mysqli_query($conexao,$query);
+		$resultado = mysqli_query($this->conexao,$query);
 
 		while ($categoria_array = mysqli_fetch_assoc($resultado)):
 			$categoria = new Categoria();
@@ -15,4 +21,5 @@
 		endwhile;
 
 		return $categorias;
+	}
 	}

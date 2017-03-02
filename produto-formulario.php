@@ -1,14 +1,16 @@
 <?php 
+	require_once("cabecalho.php"); 
 	require_once("logica-usuario.php");
 	verificaUsuario();
 
-	require_once("cabecalho.php"); 
-	require_once("banco-categoria.php");
+	$categoriaDao = new CategoriaDao($conexao);
+	
+	$categorias = $categoriaDao->listaCategorias();
 
-	$categorias = listaCategorias($conexao);
+	$categoria = new Categoria();
+	$categoria->setId(1);
 
-	$produto = array('nome' => '', 'preco' => '', 'descricao' => '', 'categoria_id' => 1);
-	$usado = "";
+	$produto = new Produto("","","",$categoria,"");
 ?>
 
 	<h1>Formulário de Produto</h1>
@@ -20,7 +22,7 @@
 				<td><button class="btn btn-primary" type="submit">Cadastrar</button></td>
 			</tr>
 		</table>		
-	</form>
+	</form>  
 
 <?php 
 	include("rodape.php");

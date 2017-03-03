@@ -1,29 +1,19 @@
 <?php 
 	require_once('cabecalho.php'); 
 
-	$categoria = new Categoria();
-	$categoria->setId($_POST['categoria_id']);
-
-	$nome = $_POST['nome'];
-	$preco = $_POST['preco'];
-	$descricao = $_POST['descricao'];
 	$tipoProduto = $_POST['tipoProduto'];
-	$isbn = $_POST['isbn'];
-
-	if (array_key_exists('usado', $_POST)) {
-		$usado = "true";
-	} else {
-		$usado = "false" ;
-	}
-
-	if ($tipoProduto == "Livro"){
-		$produto = new Livro($nome,$preco,$descricao,$categoria,$usado);
-		$produto->setIsbn($isbn);
-	} else {
-		$produto = new Produto($nome,$preco,$descricao,$categoria,$usado);
-	}
 	
-	$produto->setId($_POST['id']);
+
+	$categoria_id = $_POST['categoria_id'];
+	$produto_id = $_POST['id'];
+
+	$factory = new ProdutoFactory();
+	
+	$produto = $factory->criaPor($tipoProduto, $_POST);
+	$produto->getCategoria()->setId($categoria_id);
+	$produto->setId($produto_id);
+
+	$produto->atualizaBaseadoEm($_POST);
 
 	$produtoDao = new ProdutoDao($conexao);
 

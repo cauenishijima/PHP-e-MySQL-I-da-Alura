@@ -3,28 +3,14 @@
 	require_once("logica-usuario.php");
 	verificaUsuario();
 
-	$categoria = new Categoria();
-	$categoria->setId($_POST['categoria_id']);
-	
-	$nome = $_POST['nome'];
-	$preco = $_POST['preco'];
-	$descricao = $_POST['descricao'];
 	$tipoProduto = $_POST['tipoProduto'];
-	$isbn = $_POST['isbn'];
+	$categoria_id = $_POST['categoria_id'];
 
-	if (array_key_exists('usado', $_POST)) {
-		$usado = "true";
-	} else {
-		$usado = "false";
-	}
+	$factory = new ProdutoFactory();
+	$produto = $factory->criaPor($tipoProduto,$_POST);
+	$produto->getCategoria()->setId($categoria_id);
 
-	if ($tipoProduto == "Livro"){
-		$produto = new Livro($nome,$preco,$descricao,$categoria,$usado);
-		$produto->setIsbn($isbn);
-	} else {
-		$produto = new Produto($nome,$preco,$descricao,$categoria,$usado);
-	}
-
+	$produto->atualizaBaseadoEm($_POST);
 
 	$produtoDao = new ProdutoDao($conexao);
 

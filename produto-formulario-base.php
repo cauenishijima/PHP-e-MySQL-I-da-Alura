@@ -35,19 +35,22 @@
 				<td>Tipo do produto</td>
     			<td>
         			<select name="tipoProduto" class="form-control">
-			            <?php
-				            $tipos = array("Livro", "Produto");
+        				<optgroup label="Livros">
+				            <?php
+					            $tipos = array("Livro Fisico","Ebook");
 
-				            foreach($tipos as $tipo) : 
-				                $esseEhOTipo = get_class($produto) == $tipo;
-				                $selecaoTipo = $esseEhOTipo ? "selected='selected'" : "";
-				        ?>
-				                <option value="<?=$tipo?>" <?=$selecaoTipo?>>
-				                    <?=$tipo?>
-				                </option>
-			            <?php
-			            	endforeach 
-			            ?>
+					            foreach($tipos as $tipo) : 
+					            	$tipoSemEspaco = str_replace(' ', '', $tipo);
+					                $esseEhOTipo = get_class($produto) == $tipoSemEspaco;
+					                $selecaoTipo = $esseEhOTipo ? "selected='selected'" : "";
+					        ?>
+					                <option value="<?=$tipoSemEspaco?>" <?=$selecaoTipo?>>
+					                    <?=$tipo?>
+					                </option>
+				            <?php
+				            	endforeach
+				            ?>
+			            </optgroup>
        	 			</select>
     			</td>
 			</tr>
@@ -58,5 +61,21 @@
 			    <td>
 			        <input type="text" name="isbn" class="form-control" 
 			            value="<?php if ($produto->temIsbn()) { echo $produto->getIsbn(); } ?>" >
+			    </td>
+			</tr>
+
+			<tr>
+			    <td>Taxa Impressao (caso seja um Livro Fisico)</td>
+			    <td>
+			        <input type="text" name="taxaImpressao" class="form-control" 
+			            value="<?php if ($produto->temTaxaImpressao()) { echo $produto->getTaxaImpressao(); } ?>" >
+			    </td>
+			</tr>
+
+			<tr>
+			    <td>Marca d'agua (caso seja um Ebook)</td>
+			    <td>
+			        <input type="text" name="waterMark" class="form-control" 
+			            value="<?php if ($produto->temWaterMark()) { echo $produto->getWaterMark(); } ?>" >
 			    </td>
 			</tr>

@@ -1,5 +1,5 @@
 <?php
- 	class Produto
+ 	abstract class Produto
 	{
 		private $id;
 		private $nome;
@@ -24,6 +24,29 @@
 		public function temIsbn(){
 			return $this instanceof Livro;
 		}
+
+		public function temWaterMark(){
+			return $this instanceof Ebook;
+		}
+
+		public function temTaxaImpressao(){
+			return $this instanceof LivroFisico;
+		}
+
+		public function precoComDesconto($valor = 0.1){
+			$valorComDesconto = $this->preco;
+
+			if ($valor > 0 && $valor <= 0.5){
+				$valorComDesconto *= (1 - $valor); 
+			}
+			return $valorComDesconto;
+		}
+
+		public function calculaImposto(){
+			return $this->preco * 0.195;
+		}
+
+		abstract public function atualizaBaseadoEm($params);
 
 
 		public function getId(){
@@ -65,12 +88,4 @@
 			$this->usado = $usado;
 		}
 
-		public function precoComDesconto($valor = 0.1){
-			$valorComDesconto = $this->preco;
-
-			if ($valor > 0 && $valor <= 0.5){
-				$valorComDesconto *= (1 - $valor); 
-			}
-			return $valorComDesconto;
-		}
 	}
